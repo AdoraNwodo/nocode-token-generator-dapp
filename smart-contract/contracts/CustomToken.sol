@@ -2,9 +2,7 @@
 
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract CustomToken is Ownable{
+contract CustomToken{
 
     struct Token {
         string name;
@@ -90,10 +88,14 @@ contract CustomToken is Ownable{
             // Call contract to create ERC1155 Token
         }
 
+        Token[] storage tokens = createdTokens[msg.sender];
+        tokens.push(_token);
+        createdTokens[msg.sender] = tokens;
+
         emit Created(_token.name, _token.symbol, _token.tokenType);
     }
 
-    function returnTokens() public onlyOwner returns(Token[] memory)
+    function returnTokens() public returns(Token[] memory)
     {
         Token[] memory tokens = createdTokens[msg.sender];
 
