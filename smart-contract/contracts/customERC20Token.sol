@@ -28,7 +28,7 @@ contract CustomERC20Token is ERC20, Ownable {
         token = _token;
         //initialSupply
         if (_token.isMintable) {
-            ERC20._mint(_msgSender(), _token.initialSupply);
+            ERC20._mint(msg.sender, _token.initialSupply);
         }
     }
 
