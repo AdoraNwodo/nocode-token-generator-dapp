@@ -1,5 +1,8 @@
 # AutoToken
-AutoToken is a DApp that allows people without technical skills to create their own tokens without needing to write code.
+AutoToken is a DApp that allows people without technical skills to create their own tokens without needing to write code ✨ 🚀
+
+
+[![AutoToken](https://raw.githubusercontent.com/AdoraNwodo/nocode-token-generator-dapp/main/ui/home.png)](https://github.com/AdoraNwodo/nocode-token-generator-dapp)
 
 ## Problem
 Accessibility and penetration of blockchain technology. There are users (e.g. content creators) that would like to create their tokens for utility but don't know how to.This means that if you are not a Web3 developer, creating your own token will be hard for you. 
