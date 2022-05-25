@@ -5,6 +5,7 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
+import "./Store.sol";
 
 contract CustomERC20 is Context, IERC20, IERC20Metadata {
     mapping(address => uint256) private _balances;
@@ -17,12 +18,16 @@ contract CustomERC20 is Context, IERC20, IERC20Metadata {
     bool private _isMintable;
     uint256 private _totalSupply;
 
+    IStore private _store = new Store();
+
     constructor(string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_, uint256 initialSupply_) {
         _name = name_;
         _symbol = symbol_;
         _isBurnable = isBurnable_;
         _isMintable = isMintable_;
         _totalSupply = initialSupply_;
+
+        _store.saveToken(_name, _symbol, "ERC20");
     }
 
     function name() public view virtual override returns (string memory) {

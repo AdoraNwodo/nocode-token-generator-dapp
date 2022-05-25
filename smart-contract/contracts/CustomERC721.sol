@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/utils/Address.sol";
 import "@openzeppelin/contracts/utils/Context.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165.sol";
+import "./Store.sol";
 
 contract CustomERC721 is Context, ERC165, IERC721, IERC721Metadata {
 
@@ -19,6 +20,8 @@ contract CustomERC721 is Context, ERC165, IERC721, IERC721Metadata {
     string private _symbol;
     bool private _isBurnable;
     bool private _isMintable;
+
+    IStore private _store = new Store();
 
     // Mapping from token ID to owner address
     mapping(uint256 => address) private _owners;
@@ -37,6 +40,8 @@ contract CustomERC721 is Context, ERC165, IERC721, IERC721Metadata {
         _symbol = symbol_;
         _isBurnable = isBurnable_;
         _isMintable = isMintable_;
+
+        _store.saveToken(_name, _symbol, "ERC20");
     }
 
     function supportsInterface(bytes4 interfaceId) public view virtual override(ERC165, IERC165) returns (bool) {

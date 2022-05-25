@@ -4,28 +4,30 @@
     <div class="container mx-auto px-4 md:px-12 padding-bottom-full">
       <label for="tokenname" class="block text-sm font-medium text-gray-700">Token Name*</label>
       <div class="mt-1 relative rounded-md shadow-sm">
-        <input type="text" name="tokenname" id="tokenname" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+        <input type="text" name="tokenname" id="tokenname" v-model="name" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
       <label for="tokensymbol" class="block text-sm font-medium text-gray-700">Token Symbol*</label>
       <div class="mt-1 relative rounded-md shadow-sm">
-        <input type="text" name="tokensymbol" id="tokensymbol" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+        <input type="text" name="tokensymbol" id="tokensymbol" v-model="symbol" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
-      <label for="initialsupply" class="block text-sm font-medium text-gray-700">Initial Token Supply*</label>
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <input type="number" name="initialsupply" id="initialsupply" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
-      </div>
+      <label for="tokentype" class="block text-sm font-medium text-gray-700">Initial Token Supply*</label>
+      <select id="tokentype" name="tokentype" @change="changeTokenType($event)" class="block w-full pl-7 pr-12 sm:text-sm rounded-md">
+        <option value="ERC20">ERC20</option>
+        <option value="ERC721">ERC721</option>
+        <option value="ERC1155">ERC1155</option>
+      </select>
 
-      <label for="decimals" class="block text-sm font-medium text-gray-700">Decimals*</label>
-      <div class="mt-1 relative rounded-md shadow-sm">
-        <input type="number" name="decimals" id="decimals" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+      <label for="initialsupply" class="block text-sm font-medium text-gray-700" v-if="tokenType != 'ERC721'">Initial Token Supply*</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType != 'ERC721'">
+        <input type="number" name="initialsupply" id="initialsupply" v-model="tokenSupply" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
       <div class="flex w-full">
         <label for="burnableToggle" class="flex cursor-pointer">
           <div class="relative">
-            <input type="checkbox" id="burnableToggle" class="sr-only">
+            <input type="checkbox" id="burnableToggle" @change="checkBurnableToggle($event)" class="sr-only">
             <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
           </div>
@@ -38,7 +40,7 @@
       <div class="flex w-full">
         <label for="mintableToggle" class="flex cursor-pointer">
           <div class="relative">
-            <input type="checkbox" id="mintableToggle" class="sr-only">
+            <input type="checkbox" id="mintableToggle" @change="checkMintableToggle($event)" class="sr-only">
             <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
             <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
           </div>
@@ -46,56 +48,6 @@
             Mintable
           </div>
         </label>
-      </div>
-
-      <div class="flex w-full">
-        <label for="feesToggle" class="flex cursor-pointer">
-          <div class="relative">
-            <input type="checkbox" id="feesToggle" class="sr-only" @change="checkFeesToggle($event)">
-            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-          </div>
-          <div class="ml-3 text-gray-700 font-medium label">
-            Fees/Taxes
-          </div>
-        </label>
-      </div>
-
-      <div v-if="hasFees">
-        <label for="burnfee" class="block text-sm font-medium text-gray-700">Burn Fee (%)</label>
-        <div class="mt-1 relative rounded-md shadow-sm">
-          <input type="number" name="burnfee" id="burnfee" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
-        </div>
-
-        <label for="transactiontax" class="block text-sm font-medium text-gray-700">Transaction Tax (%)</label>
-        <div class="mt-1 relative rounded-md shadow-sm">
-          <input type="number" name="transactiontax" id="transactiontax" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
-        </div>
-
-        <label for="taxaddress" class="block text-sm font-medium text-gray-700">Tas Receiving Address</label>
-        <div class="mt-1 relative rounded-md shadow-sm">
-          <input type="text" name="taxaddress" id="taxaddress" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
-        </div>
-      </div>
-
-      <div class="flex w-full">
-        <label for="holderRedistributionToggle" class="flex cursor-pointer">
-          <div class="relative">
-            <input type="checkbox" id="holderRedistributionToggle" class="sr-only" @change="checkHolderRedistribution($event)">
-            <div class="block bg-gray-600 w-14 h-8 rounded-full"></div>
-            <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
-          </div>
-          <div class="ml-3 text-gray-700 font-medium label">
-            Holder Redistribution
-          </div>
-        </label>
-      </div>
-
-      <div v-if="HolderRedistribution">
-        <label for="rewardfee" class="block text-sm font-medium text-gray-700">Holders Reward Fee (%)</label>
-        <div class="mt-1 relative rounded-md shadow-sm">
-          <input type="number" name="rewardfee" id="rewardfee" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
-        </div>
       </div>
 
       <div class="text-center">
@@ -110,22 +62,43 @@ export default {
   name: 'CreateToken',
   data() {
     return {
-      hasFees: false,
-      HolderRedistribution: false
+      name: "",
+      symbol: "",
+      tokenSupply: 0,
+      isBurnable: false,
+      isMintable: false,
+      tokenType: "ERC20",
+      
     }
   },
   props: {
     msg: String
   },
   methods: {
-    submit() { }
+    submit() { 
+      console.log(this.name);
+      console.log(this.symbol);
+      console.log(this.tokenSupply);
+      console.log(this.tokenType);
+      console.log(this.isBurnable);
+      console.log(this.isMintable);
+    },
+    changeTokenType(event) {
+      this.tokenType = event.target.value;
+    },
+    checkBurnableToggle(event) {
+      this.isBurnable = event.target.checked;
+    },
+    checkMintableToggle(event) {
+      this.isMintable = event.target.checked;
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.create-token input{ 
+.create-token input, .create-token select{ 
   height: 40px;
   background: transparent;
   border: 1px #ccc solid;
