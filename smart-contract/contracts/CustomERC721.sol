@@ -18,7 +18,7 @@ contract CustomERC721 {
     event Approval(address _owner, address _spender, uint _amount);
     event ApprovalForAll(address _owner, address _spender, bool _approved);
 
-    constructor( string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_) {
+    constructor(string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_) {
         _name = name_;
         _symbol = symbol_;
         _isBurnable = isBurnable_;
@@ -32,7 +32,7 @@ contract CustomERC721 {
 
     function ownerOf(uint256 tokenId) public view returns (address) {
         address owner = _owners[tokenId];
-        require(owner != address(0), "owner query for nonexistent token");
+        require(owner != address(0), "owner query for invalid token");
         return owner;
     }
 
@@ -57,18 +57,16 @@ contract CustomERC721 {
 
     function approve(address to, uint256 tokenId) public {
         address owner = ownerOf(tokenId);
-        require(to != owner, "approval to current owner");
+        address sender = msg.sender;
 
-        require(
-            msg.sender == owner || isApprovedForAll(owner, msg.sender),
-            "approve caller is not owner nor approved for all"
-        );
+        require(to != owner, "approval to current owner");
+        require(sender == owner || isApprovedForAll(owner, sender), "invalid caller");
 
         _approve(to, tokenId);
     }
 
     function getApproved(uint256 tokenId) public view returns (address) {
-        require(_exists(tokenId), "approved query for nonexistent token");
+        require(_exists(tokenId), "approved query for invalid token");
         return _tokenApprovals[tokenId];
     }
 
@@ -81,21 +79,17 @@ contract CustomERC721 {
     }
 
     function transferFrom(address from, address to, uint256 tokenId) public {
-        require(_isApprovedOrOwner(msg.sender, tokenId), "transfer caller is not owner nor approved");
+        require(_isApprovedOrOwner(msg.sender, tokenId), "transfer caller is not owner");
 
         _transfer(from, to, tokenId);
     }
 
     function safeTransferFrom(address from, address to, uint256 tokenId) public {
-        safeTransferFrom(from, to, tokenId, "");
+        require(_isApprovedOrOwner(msg.sender, tokenId), "transfer caller is not owner");
+        _safeTransfer(from, to, tokenId);
     }
 
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public {
-        require(_isApprovedOrOwner(msg.sender, tokenId), "transfer caller is not owner nor approved");
-        _safeTransfer(from, to, tokenId, data);
-    }
-
-    function _safeTransfer(address from, address to, uint256 tokenId, bytes memory data) internal {
+    function _safeTransfer(address from, address to, uint256 tokenId) internal {
         _transfer(from, to, tokenId);
     }
 
@@ -104,16 +98,12 @@ contract CustomERC721 {
     }
 
     function _isApprovedOrOwner(address spender, uint256 tokenId) internal view virtual returns (bool) {
-        require(_exists(tokenId), "operator query for nonexistent token");
+        require(_exists(tokenId), "operator query for invalid token");
         address owner = CustomERC721.ownerOf(tokenId);
         return (spender == owner || isApprovedForAll(owner, spender) || getApproved(tokenId) == spender);
     }
 
     function _safeMint(address to, uint256 tokenId) internal {
-        _safeMint(to, tokenId, "");
-    }
-
-    function _safeMint(address to, uint256 tokenId, bytes memory data) internal {
         _mint(to, tokenId);
     }
 

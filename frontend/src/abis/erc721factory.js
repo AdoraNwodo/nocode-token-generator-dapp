@@ -19,6 +19,12 @@ const erc721FactoryABI = [
         "internalType": "string",
         "name": "_tokenType",
         "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tokenAddress",
+        "type": "address"
       }
     ],
     "name": "Created",
@@ -88,6 +94,11 @@ const erc721FactoryABI = [
             "internalType": "bool",
             "name": "isMintable",
             "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
           }
         ],
         "internalType": "struct Token[]",

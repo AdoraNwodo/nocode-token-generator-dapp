@@ -7,23 +7,22 @@ import "./CustomERC721.sol";
 
 contract ERC721Factory {
     mapping(address => Token[]) private addressToTokens;
-    CustomERC721[] public tokenList;
 
-    event Created(string _name, string _symbol, string _tokenType);
+    event Created(string _name, string _symbol, string _tokenType, address _tokenAddress);
 
     function create(string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_) external returns (bool) {
         // Spin up new ERC721 token
         CustomERC721 erc721 = new CustomERC721(name_, symbol_, isBurnable_, isMintable_);
-        tokenList.push(erc721);
+        address _tokenAddress = address(erc721);
 
         // Save token data
         address sender = msg.sender;
         Token[] storage tokens = addressToTokens[sender];
-        tokens.push(Token(name_, symbol_, "ERC721", isBurnable_, isMintable_));
+        tokens.push(Token(name_, symbol_, "ERC721", isBurnable_, isMintable_, _tokenAddress));
         addressToTokens[sender] = tokens;
 
-        // Emit and retuen
-        emit Created(name_, symbol_, "ERC721");
+        // Emit and return
+        emit Created(name_, symbol_, "ERC721", _tokenAddress);
         return true;
     }
 

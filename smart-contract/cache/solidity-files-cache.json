@@ -74,8 +74,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\CustomERC20.sol": {
-      "lastModificationDate": 1653492308701,
-      "contentHash": "3e425838377f514b65901f4953acef9d",
+      "lastModificationDate": 1653597607299,
+      "contentHash": "1dbcbc17df420f5d6f3c2a909cc800ac",
       "sourceName": "contracts/CustomERC20.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -100,11 +100,7 @@
           }
         }
       },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC20/IERC20.sol",
-        "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol",
-        "@openzeppelin/contracts/utils/Context.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "0.8.14"
       ],
@@ -185,8 +181,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\CustomERC721.sol": {
-      "lastModificationDate": 1653492127550,
-      "contentHash": "fe1ed77d03739145b204034a9330d578",
+      "lastModificationDate": 1653599190941,
+      "contentHash": "5559cc9e0825f8387a547d0e4f83c4f0",
       "sourceName": "contracts/CustomERC721.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -211,15 +207,7 @@
           }
         }
       },
-      "imports": [
-        "@openzeppelin/contracts/token/ERC721/IERC721.sol",
-        "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol",
-        "@openzeppelin/contracts/token/ERC721/extensions/IERC721Metadata.sol",
-        "@openzeppelin/contracts/utils/Address.sol",
-        "@openzeppelin/contracts/utils/Context.sol",
-        "@openzeppelin/contracts/utils/Strings.sol",
-        "@openzeppelin/contracts/utils/introspection/ERC165.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "0.8.14"
       ],
@@ -479,8 +467,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\ERC20Factory.sol": {
-      "lastModificationDate": 1653492090140,
-      "contentHash": "1fc08518460dd736462c7b5a911bc529",
+      "lastModificationDate": 1653597932983,
+      "contentHash": "67b0197d7e56202f55c2d6ce0aa7530c",
       "sourceName": "contracts/ERC20Factory.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -517,8 +505,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\TokenData.sol": {
-      "lastModificationDate": 1653491709271,
-      "contentHash": "a4a9694a686e42b81667dad2d558fbe6",
+      "lastModificationDate": 1653597548933,
+      "contentHash": "cf2e70438e61f3b65c6faf3b3803abdb",
       "sourceName": "contracts/TokenData.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -550,8 +538,8 @@
       "artifacts": []
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\ERC721Factory.sol": {
-      "lastModificationDate": 1653548756246,
-      "contentHash": "84f2d0dc7616911727c817388d6bfdaf",
+      "lastModificationDate": 1653597994473,
+      "contentHash": "9267508e1a05bcbe93b58fb063fefce3",
       "sourceName": "contracts/ERC721Factory.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -585,42 +573,6 @@
       ],
       "artifacts": [
         "ERC721Factory"
-      ]
-    },
-    "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\Store.sol": {
-      "lastModificationDate": 1653541302223,
-      "contentHash": "01d79e543436f283c6d4edc3ca088c0a",
-      "sourceName": "contracts/Store.sol",
-      "solcConfig": {
-        "version": "0.8.14",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "0.8.14"
-      ],
-      "artifacts": [
-        "IStore",
-        "Store"
       ]
     }
   }
