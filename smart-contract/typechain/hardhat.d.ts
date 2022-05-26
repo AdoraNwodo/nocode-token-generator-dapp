@@ -17,9 +17,41 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Ownable__factory>;
     getContractFactory(
+      name: "ERC1155",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC1155__factory>;
+    getContractFactory(
+      name: "IERC1155MetadataURI",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1155MetadataURI__factory>;
+    getContractFactory(
+      name: "IERC1155",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1155__factory>;
+    getContractFactory(
+      name: "IERC1155Receiver",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC1155Receiver__factory>;
+    getContractFactory(
+      name: "ERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC165__factory>;
+    getContractFactory(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165__factory>;
+    getContractFactory(
+      name: "CustomERC1155Token",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CustomERC1155Token__factory>;
+    getContractFactory(
       name: "CustomToken",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.CustomToken__factory>;
+    getContractFactory(
+      name: "ERC1155Factory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC1155Factory__factory>;
 
     // default types
     getContractFactory(
