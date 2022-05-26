@@ -219,13 +219,13 @@ img.loading{
   width: 50px;
 }
 h4.success{
-  background: green;
+  background: #38C5B2;
   color: white;
   padding: 20px 30px;
   border-radius: 15px;
 }
 h4.error{
-  background: red;
+  background: #E56668;
   color: white;
   padding: 20px 30px;
   border-radius: 15px;
