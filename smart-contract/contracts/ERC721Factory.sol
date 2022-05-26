@@ -10,8 +10,8 @@ contract ERC721Factory {
 
     event Created(string _name, string _symbol, string _tokenType);
 
-    function create(string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_, uint256 initialSupply_) external returns (bool) {
-        // Spin up new ERC20 token
+    function create(string memory name_, string memory symbol_, bool isBurnable_, bool isMintable_) external returns (bool) {
+        // Spin up new ERC721 token
         new CustomERC721(name_, symbol_, isBurnable_, isMintable_);
 
         // Save token data

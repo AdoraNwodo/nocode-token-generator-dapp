@@ -550,8 +550,8 @@
       "artifacts": []
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\ERC721Factory.sol": {
-      "lastModificationDate": 1653492419004,
-      "contentHash": "4b66fd37836effe0343e287a5ce0589e",
+      "lastModificationDate": 1653548756246,
+      "contentHash": "84f2d0dc7616911727c817388d6bfdaf",
       "sourceName": "contracts/ERC721Factory.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -585,6 +585,42 @@
       ],
       "artifacts": [
         "ERC721Factory"
+      ]
+    },
+    "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\Store.sol": {
+      "lastModificationDate": 1653541302223,
+      "contentHash": "01d79e543436f283c6d4edc3ca088c0a",
+      "sourceName": "contracts/Store.sol",
+      "solcConfig": {
+        "version": "0.8.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "0.8.14"
+      ],
+      "artifacts": [
+        "IStore",
+        "Store"
       ]
     }
   }

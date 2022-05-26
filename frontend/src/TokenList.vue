@@ -19,6 +19,10 @@
 </template>
 
 <script>
+import {ethers} from 'ethers';
+import { erc20FactoryABI } from './abis/erc20factory';
+import { erc721FactoryABI } from './abis/erc721factory';
+
 export default {
   name: 'TokenList',
   props: {
@@ -26,14 +30,49 @@ export default {
   },
   data() {
     return {
-      tokens: [
-        { id:"1", symbol: "NENZ", name: "The Nenz Token"},
-        { id:"2", symbol: "BLS", name: "The Blessing Token"},
-        { id:"3", symbol: "PFT", name: "The Parfait Token"},
-        { id:"4", symbol: "TKVR", name: "The Takeover Token"},
-      ]
+      counter: 1,
+      tokens: []
     }
   },
+  methods: {
+    async getTokens(address, abi){
+      let counter = this.counter;
+      const tokens = this.tokens;
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+      await provider.send("eth_requestAccounts", []);
+      const signer = provider.getSigner();
+      const instance = new ethers.Contract(address, abi, signer);
+
+      const response = await instance.getAll();
+
+      response.forEach(function(data) 
+      {
+        var jsonData = {};
+
+        jsonData['id'] = counter;
+        jsonData['name'] = data.name;
+        jsonData['symbol'] = data.symbol;
+        jsonData['tokenType'] = data.tokenType;
+        jsonData['isBurnable'] = data.isBurnable;
+        jsonData['isMintable'] = data.isMintable;
+
+        counter++;
+        tokens.push(jsonData);
+      });
+
+      this.counter = counter;
+      this.tokens = tokens;
+    }
+  },
+  async mounted(){
+    const erc20address = '0xEF5e78E21b3a4e9ad93bc412621418C7B2814720';
+    await this.getTokens(erc20address, erc20FactoryABI);
+
+    const erc721address = '0x0f24Cce1d1A95F6357Af393567B067dDA0f6a5AC';
+    await this.getTokens(erc721address, erc721FactoryABI);
+
+  }
 }
 </script>
 

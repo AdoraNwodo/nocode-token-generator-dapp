@@ -6,20 +6,12 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
+  const ERC721Factory = await ethers.getContractFactory("ERC721Factory");
+  const eRC721Factory = await ERC721Factory.deploy();
 
-  // We get the contract to deploy
-  const ERC20Factory = await ethers.getContractFactory("ERC20Factory");
-  const erc20Factory = await ERC20Factory.deploy();
+  await eRC721Factory.deployed();
 
-  await erc20Factory.deployed();
-
-  console.log("ERC20Factory deployed to:", erc20Factory.address);
+  console.log("ERC721Factory deployed to:", eRC721Factory.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
