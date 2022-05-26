@@ -8,4 +8,5 @@ struct Token {
     string tokenType;
     bool isBurnable;
     bool isMintable;
+    address tokenAddress;
 }
