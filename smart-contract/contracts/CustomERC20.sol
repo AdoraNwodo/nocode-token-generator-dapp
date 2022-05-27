@@ -2,7 +2,9 @@
 
 pragma solidity 0.8.14;
 
-contract CustomERC20{
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract CustomERC20 is Ownable {
     mapping(address => uint256) private _balances;
     mapping(address => mapping(address => uint256)) private _allowances;
 
@@ -22,6 +24,7 @@ contract CustomERC20{
         _isBurnable = isBurnable_;
         _isMintable = isMintable_;
         _totalSupply = initialSupply_;
+        transferOwnership(tx.origin);
     }
 
     function name() public view returns (string memory) {

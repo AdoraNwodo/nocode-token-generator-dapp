@@ -1,7 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.14;
 
-contract CustomERC721 {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract CustomERC721 is Ownable {
 
     // Token properties
     string private _name;
@@ -23,6 +25,7 @@ contract CustomERC721 {
         _symbol = symbol_;
         _isBurnable = isBurnable_;
         _isMintable = isMintable_;
+        transferOwnership(tx.origin);
     }
 
     function balanceOf(address owner) public view returns (uint256) {
