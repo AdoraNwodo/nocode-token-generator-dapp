@@ -1,6 +1,6 @@
 <template>
   <div class="create-token">
-    <!--<h1 class="text-center">Balance - 0.99 ETH</h1>-->
+    <h1 class="text-center">Balance - {{accountBalance}} ETH</h1>
     <br />
     <div class="container mx-auto px-4 md:px-12">
       <h4 class="placeholder" v-if="!hasError && !hasSuccess">&nbsp;</h4>
@@ -16,8 +16,8 @@
         <input type="text" name="tokenname" id="tokenname" v-model="name" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
-      <label for="tokensymbol" class="block text-sm font-medium text-gray-700">Token Symbol*</label>
-      <div class="mt-1 relative rounded-md shadow-sm">
+      <label for="tokensymbol" class="block text-sm font-medium text-gray-700" v-if="tokenType != erc1155">Token Symbol*</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType != erc1155">
         <input type="text" name="tokensymbol" id="tokensymbol" v-model="symbol" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
@@ -25,15 +25,30 @@
       <select id="tokentype" name="tokentype" @change="changeTokenType($event)" class="block w-full pl-7 pr-12 sm:text-sm rounded-md">
         <option value="ERC20">ERC20</option>
         <option value="ERC721">ERC721</option>
-        <option value="{{ERC1155}}">ERC1155</option>
+        <option value="ERC1155">ERC1155</option>
       </select>
 
-      <label for="initialsupply" class="block text-sm font-medium text-gray-700" v-if="tokenType != 'ERC721'">Initial Token Supply*</label>
-      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType != 'ERC721'">
+      <label for="tokenuri" class="block text-sm font-medium text-gray-700" v-if="tokenType == erc1155">Token Uri*</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType == erc1155">
+        <input type="text" name="tokenuri" id="tokenuri" v-model="uri" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+      </div>
+
+      <label for="tokennames" class="block text-sm font-medium text-gray-700" v-if="tokenType == erc1155">Token Names List* (Separate names with commas)</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType == erc1155">
+        <input type="text" name="tokennames" id="tokennames" v-model="nameList" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+      </div>
+
+      <label for="tokenids" class="block text-sm font-medium text-gray-700" v-if="tokenType == erc1155">Token Ids List* (Separate numbers with commas)</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType == erc1155">
+        <input type="text" name="tokenids" id="tokenids" v-model="idList" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
+      </div>
+
+      <label for="initialsupply" class="block text-sm font-medium text-gray-700" v-if="tokenType == erc20">Initial Token Supply*</label>
+      <div class="mt-1 relative rounded-md shadow-sm" v-if="tokenType == erc20">
         <input type="number" name="initialsupply" id="initialsupply" v-model="tokenSupply" class="block w-full pl-7 pr-12 sm:text-sm rounded-md" />
       </div>
 
-      <div class="flex w-full">
+      <div class="flex w-full" v-if="tokenType != erc1155">
         <label for="burnableToggle" class="flex cursor-pointer">
           <div class="relative">
             <input type="checkbox" id="burnableToggle" @change="checkBurnableToggle($event)" class="sr-only">
@@ -68,25 +83,32 @@
 
 <script>
 import {ethers} from 'ethers';
-import { ERC20, ERC721, ERC1155, ERC20Address, ERC721Address } from './utils/constants';
+import { ERC20, ERC721, ERC1155, ERC20Address, ERC721Address, ERC1155Address } from './utils/constants';
 import { erc20FactoryABI } from './abis/erc20factory';
 import { erc721FactoryABI } from './abis/erc721factory';
+import { erc1155FactoryABI } from './abis/erc1155factory';
 
 export default {
   name: 'CreateToken',
   data() {
     return {
+      accountBalance: "",
       isLoading: false,
       hasError: false,
       hasSuccess: false,
       errorMessage: "",
       successMessage: "",
       name: "",
+      uri: "",
       symbol: "",
       tokenSupply: 0,
       isBurnable: false,
       isMintable: false,
       tokenType: "ERC20",
+      nameList: "",
+      idList: "",
+      erc1155NameList: [],
+      erc1155IdList: [],
       erc20: ERC20,
       erc721: ERC721,
       erc1155: ERC1155
@@ -94,10 +116,11 @@ export default {
   },
   async mounted(){
     const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-    if (provider != null)
-    {
-      this.hasEthProvider = true
-    }
+    await provider.send("eth_requestAccounts", []);
+    const signer = provider.getSigner();
+    const balance = await signer.getBalance();
+    this.accountBalance = ethers.utils.formatEther(balance);
+
   },
   methods: {
     isEmpty(str){
@@ -111,15 +134,19 @@ export default {
       if (this.tokenType == ERC20)
       {
         const instance = new ethers.Contract(ERC20Address, erc20FactoryABI, signer);
-        const response = await instance.create(this.name, this.symbol, this.isBurnable, this.isMintable, this.tokenSupply);
-        console.log(response);
+        await instance.create(this.name, this.symbol, this.isBurnable, this.isMintable, this.tokenSupply);
       }
 
       if (this.tokenType == ERC721)
       {
         const instance = new ethers.Contract(ERC721Address, erc721FactoryABI, signer);
-        const response = await instance.create(this.name, this.symbol, this.isBurnable, this.isMintable);
-        console.log(response);
+        await instance.create(this.name, this.symbol, this.isBurnable, this.isMintable);
+      }
+
+      if (this.tokenType == ERC1155)
+      {
+        const instance = new ethers.Contract(ERC1155Address, erc1155FactoryABI, signer);
+        await instance.create(this.name, this.uri, this.isMintable, this.erc1155IdList, this.erc1155NameList);
       }
     },
     async submit() { 
@@ -134,7 +161,7 @@ export default {
         this.hasError = true;
         this.errorMessage = "Token name field is empty";
       }
-      else if (this.isEmpty(this.symbol))
+      else if (this.isEmpty(this.symbol) && this.tokenType != ERC1155)
       {
         this.hasError = true;
         this.errorMessage = "Token symbol field is empty";
@@ -146,6 +173,35 @@ export default {
       }
       else
       { 
+        if (this.tokenType == ERC1155)
+        {
+          if (this.isEmpty(this.uri))
+          {
+            this.hasError = true;
+            this.errorMessage = "Token metadata url is empty";
+          }
+
+          if (this.isEmpty(this.nameList))
+          {
+            this.hasError = true;
+            this.errorMessage = "Token names list is empty";
+          }
+
+          if (this.isEmpty(this.idList))
+          {
+            this.hasError = true;
+            this.errorMessage = "Token id list is empty";
+          }
+
+          const names = this.nameList.split(",");
+          this.erc1155NameList = names.map(element => {
+            return element.trim();
+          });
+
+          const numbers = this.idList.split(",");
+          this.erc1155IdList = numbers.map(Number);
+        }
+
         try
         { 
           await this.createToken();

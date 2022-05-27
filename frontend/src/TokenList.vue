@@ -4,14 +4,22 @@
     <div class="container my-12 mx-auto px-4 md:px-12">
       <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3 text-center" v-for="token in this.tokens" v-bind:key="token.id">
-            <router-link :to="{ name: 'MyTokens', params: { tokenSymbol: token.symbol }}">
-              <article class="overflow-hidden rounded-lg shadow-lg column">
+            <a v-bind:href="token.url" target="_blank">
+              <article class="overflow-hidden rounded-lg shadow-lg column" v-if="token.tokenType != 'ERC1155'">
                 <h2>
                   ${{token.symbol}}
                 </h2>
                 <p>{{token.name}}</p>
+                <p class="pink">{{token.tokenType}}</p>
+                <p class="address">{{token.tokenAddress}}</p>
               </article>
-            </router-link>
+              <article class="overflow-hidden rounded-lg shadow-lg column" v-else>
+                <p class="pd-top-20">{{token.name}}</p>
+                <p class="pink">{{token.tokenType}}</p>
+                <p class="address">{{token.metadataUrl}}</p>
+                <p class="address">{{token.tokenAddress}}</p>
+              </article>
+            </a>
         </div>
       </div>
     </div>
@@ -22,6 +30,8 @@
 import {ethers} from 'ethers';
 import { erc20FactoryABI } from './abis/erc20factory';
 import { erc721FactoryABI } from './abis/erc721factory';
+import { erc1155FactoryABI } from './abis/erc1155factory';
+import { ERC20Address, ERC721Address, ERC1155Address } from './utils/constants';
 
 export default {
   name: 'TokenList',
@@ -51,11 +61,23 @@ export default {
         var jsonData = {};
 
         jsonData['id'] = counter;
-        jsonData['name'] = data.name;
-        jsonData['symbol'] = data.symbol;
-        jsonData['tokenType'] = data.tokenType;
-        jsonData['isBurnable'] = data.isBurnable;
-        jsonData['isMintable'] = data.isMintable;
+        jsonData['url'] = `https://rinkeby.etherscan.io/address/${data.tokenAddress}`;
+
+        if (data.tokenType)
+        {
+          jsonData['name'] = data.name;
+          jsonData['symbol'] = data.symbol;
+          jsonData['tokenType'] = data.tokenType;
+          jsonData['isBurnable'] = data.isBurnable;
+          jsonData['isMintable'] = data.isMintable;
+          jsonData['tokenAddress'] = data.tokenAddress;
+        }
+        else
+        {
+          jsonData['name'] = data.contractName;
+          jsonData['tokenType'] = "ERC1155";
+          jsonData['metadataUrl'] = data.uri;
+        }
 
         counter++;
         tokens.push(jsonData);
@@ -66,12 +88,9 @@ export default {
     }
   },
   async mounted(){
-    const erc20address = '0xEF5e78E21b3a4e9ad93bc412621418C7B2814720';
-    await this.getTokens(erc20address, erc20FactoryABI);
-
-    const erc721address = '0x0f24Cce1d1A95F6357Af393567B067dDA0f6a5AC';
-    await this.getTokens(erc721address, erc721FactoryABI);
-
+    await this.getTokens(ERC20Address, erc20FactoryABI);
+    await this.getTokens(ERC721Address, erc721FactoryABI);
+    await this.getTokens(ERC1155Address, erc1155FactoryABI);
   }
 }
 </script>
@@ -84,11 +103,11 @@ export default {
   color: white;
 }
 .tokens .column{ 
-  margin-top: 20px;
+  margin-bottom: 30px;
   width: 95%;
   padding: 15px;
   background: black;
-  height: 130px;
+  height: 170px;
   border-radius: 20px;
   color: white;
   box-shadow: 2px 2px 19px -8px rgba(253,108,158,0.29);
@@ -110,6 +129,13 @@ export default {
   margin: 0px;
 }
 .tokens h2 {
-  font-size: 30px !important;
+  font-size: 20px !important;
+  padding-top: 20px;
+}
+p.pd-top-20{ 
+  padding-top: 20px;
+}
+p.address{ 
+  font-size: 11px !important;
 }
 </style>

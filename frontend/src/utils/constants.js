@@ -3,11 +3,13 @@ const ERC721 = "ERC721";
 const ERC1155 = "ERC1155";
 const ERC20Address = '0x1414180988Cf391728e1C0B9a39aC7edEb1e22d6';
 const ERC721Address = '0x8DE05B19e46d7Ae78604AFb97f42A188628899Fa';
+const ERC1155Address = '0x4D00916E6ADB1696D14D06FE0C6f8EA8a1fB7Cd6';
     
 export {
     ERC20,
     ERC721,
     ERC1155,
     ERC20Address,
-    ERC721Address
+    ERC721Address,
+    ERC1155Address
 }

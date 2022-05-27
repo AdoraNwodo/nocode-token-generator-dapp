@@ -7,11 +7,11 @@ import { ethers } from "hardhat";
 
 async function main() {
   const ERC721Factory = await ethers.getContractFactory("ERC721Factory");
-  const eRC721Factory = await ERC721Factory.deploy();
+  const erc721Factory = await ERC721Factory.deploy();
 
-  await eRC721Factory.deployed();
+  await erc721Factory.deployed();
 
-  console.log("ERC721Factory deployed to:", eRC721Factory.address);
+  console.log("ERC721Factory deployed to:", erc721Factory.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

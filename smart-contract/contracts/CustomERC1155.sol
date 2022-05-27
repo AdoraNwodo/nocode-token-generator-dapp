@@ -35,7 +35,7 @@ contract CustomERC1155Token is ERC1155, Ownable {
         baseMetadataURI = _uri;
         name = _contractName;
         isMintable = __isMintable;
-        transferOwnership(msg.sender);
+        transferOwnership(tx.origin);
     }
 
     function getNames() public view returns (string[] memory) {

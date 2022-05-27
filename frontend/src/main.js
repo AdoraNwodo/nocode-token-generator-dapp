@@ -5,7 +5,6 @@ import 'element-plus/dist/index.css'
 import App from './App.vue'
 import Home from './Home.vue'
 import TokenList from './TokenList.vue'
-import Token from './Token.vue'
 import CreateToken from './CreateToken.vue'
 import NotFound from './NotFound.vue'
 import './assets/tailwind.css'
@@ -13,7 +12,6 @@ import './assets/tailwind.css'
 const routes = [
     { path: '/', component: Home },
     { path: '/tokens', component: TokenList },
-    { path: '/tokens/:tokenSymbol', component: Token, name: 'MyTokens', },
     { path: '/token/create', component: CreateToken },
     { path: '/:pathMatch(.*)*', component: NotFound }
 ]
