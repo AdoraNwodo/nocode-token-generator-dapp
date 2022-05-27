@@ -10,3 +10,11 @@ struct Token {
     bool isMintable;
     address tokenAddress;
 }
+
+struct ERC115Token {
+    string contractName;
+    string uri;
+    string[] names;
+    address tokenAddress;
+    uint256[] ids;
+}
