@@ -40,8 +40,6 @@ import { CollectionIcon, PlusIcon } from '@heroicons/vue/outline'
 </script>
 
 <script>
-const { ethers } = require("ethers");
-
 export default {
   name: 'NavBar',
   props: {
