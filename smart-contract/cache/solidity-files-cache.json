@@ -74,8 +74,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\CustomERC20.sol": {
-      "lastModificationDate": 1653649546122,
-      "contentHash": "0c28b23cde480479b771717e3d3c1101",
+      "lastModificationDate": 1653739246763,
+      "contentHash": "a6e174c68eec4e00b918f2eab5dff180",
       "sourceName": "contracts/CustomERC20.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -101,7 +101,8 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC20/ERC20.sol"
       ],
       "versionPragmas": [
         "0.8.14"
@@ -183,8 +184,8 @@
       ]
     },
     "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\contracts\\CustomERC721.sol": {
-      "lastModificationDate": 1653649485478,
-      "contentHash": "4677ea1d640918c06c25c3d09ceae0fb",
+      "lastModificationDate": 1653740232667,
+      "contentHash": "c376ca7357cc60331d32671cd9b00e6e",
       "sourceName": "contracts/CustomERC721.sol",
       "solcConfig": {
         "version": "0.8.14",
@@ -210,7 +211,8 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@openzeppelin/contracts/access/Ownable.sol",
+        "@openzeppelin/contracts/token/ERC721/ERC721.sol"
       ],
       "versionPragmas": [
         "0.8.14"
@@ -806,6 +808,88 @@
       ],
       "artifacts": [
         "ERC1155Factory"
+      ]
+    },
+    "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC20\\ERC20.sol": {
+      "lastModificationDate": 1653416455818,
+      "contentHash": "a9d2146925da52142435d3bb8df53c3c",
+      "sourceName": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
+      "solcConfig": {
+        "version": "0.8.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC20.sol",
+        "./extensions/IERC20Metadata.sol",
+        "../../utils/Context.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC20"
+      ]
+    },
+    "C:\\Users\\nenwodo\\source\\dappcamp\\nocode-token-generator-dapp\\smart-contract\\node_modules\\@openzeppelin\\contracts\\token\\ERC721\\ERC721.sol": {
+      "lastModificationDate": 1653739864240,
+      "contentHash": "21b9f3bdb3e60f56ea81361c37420136",
+      "sourceName": "@openzeppelin/contracts/token/ERC721/ERC721.sol",
+      "solcConfig": {
+        "version": "0.8.14",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./IERC721.sol",
+        "./IERC721Receiver.sol",
+        "./extensions/IERC721Metadata.sol",
+        "../../utils/Address.sol",
+        "../../utils/Context.sol",
+        "../../utils/Strings.sol",
+        "../../utils/introspection/ERC165.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ERC721"
       ]
     }
   }

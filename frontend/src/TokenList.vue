@@ -61,7 +61,7 @@ export default {
         var jsonData = {};
 
         jsonData['id'] = counter;
-        jsonData['url'] = `https://rinkeby.etherscan.io/address/${data.tokenAddress}`;
+        jsonData['url'] = `https://rinkeby.etherscan.io/token/${data.tokenAddress}`;
 
         if (data.tokenType)
         {
@@ -77,6 +77,7 @@ export default {
           jsonData['name'] = data.contractName;
           jsonData['tokenType'] = "ERC1155";
           jsonData['metadataUrl'] = data.uri;
+          jsonData['tokenAddress'] = data.tokenAddress;
         }
 
         counter++;

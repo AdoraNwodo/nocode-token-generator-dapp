@@ -206,7 +206,14 @@ export default {
         { 
           await this.createToken();
           this.hasSuccess = true;
-          this.successMessage = `Successfully created your $${this.symbol} token`;
+          this.successMessage = this.tokenType == this.erc1155 ? `Successfully created your ERC1155 token` :`Successfully created your $${this.symbol} token`;
+
+          this.name = "";
+          this.uri = "";
+          this.symbol = "";
+          this.nameList = "";
+          this.idList = "";
+          this.tokenSupply = 0;
         }
         catch(error){
           this.hasError = true;

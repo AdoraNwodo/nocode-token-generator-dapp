@@ -25,8 +25,10 @@ contract CustomERC20 is ERC20, Ownable {
         _isBurnable = isBurnable_;
         _isMintable = isMintable_;
         _totalSupply = initialSupply_;
-        ERC20._mint(tx.origin, initialSupply_ * 10**18);
-        transferOwnership(tx.origin);
+
+        address origin = tx.origin;
+        ERC20._mint(origin, initialSupply_ * 10**18);
+        transferOwnership(origin);
     }
 
     function mint(address account, uint256 amount) public onlyOwner {
