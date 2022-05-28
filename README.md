@@ -20,7 +20,7 @@ To read more about this solution, read the [whitepaper.](https://docs.google.com
 
 ## Getting Started
 This project uses Node dependencies. This means you would need to have `npm` or `yarn` installed. With this, you can get started with the following steps:
-1. Clone this project git clone `git@github.com:AdoraNwodo/got-trivia.git`
+1. Clone this project git clone `git@github.com:AdoraNwodo/nocode-token-generator-dapp.git`
 2. Launch and build the frontend and smart contract.
 
 ### Frontend
