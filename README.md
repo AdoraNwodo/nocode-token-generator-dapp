@@ -3,6 +3,8 @@ AutoToken is a DApp that allows people without technical skills to create their 
 
 Try it out [here](https://autotokendapp.netlify.app/) 💕
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07395ef9-a2c4-40c6-9743-a9c7957d15f2/deploy-status)](https://app.netlify.com/sites/autotokendapp/deploys)
+
 
 [![AutoToken](https://raw.githubusercontent.com/AdoraNwodo/nocode-token-generator-dapp/main/ui/home.png)](https://github.com/AdoraNwodo/nocode-token-generator-dapp)
 
