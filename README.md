@@ -1,5 +1,6 @@
 # AutoToken
 AutoToken is a DApp that allows people without technical skills to create their own tokens without needing to write code ✨ 🚀
+
 Try it out [here](https://autotokendapp.netlify.app/) 💕
 
 
