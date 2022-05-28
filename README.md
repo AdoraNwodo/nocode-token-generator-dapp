@@ -1,10 +1,15 @@
 # AutoToken
+[![Netlify Status](https://api.netlify.com/api/v1/badges/07395ef9-a2c4-40c6-9743-a9c7957d15f2/deploy-status)](https://app.netlify.com/sites/autotokendapp/deploys)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/AdoraNwodo/nocode-token-generator-dapp/blob/master/LICENSE)
+[![Issues](https://img.shields.io/github/issues/AdoraNwodo/nocode-token-generator-dapp.svg)](https://github.com/AdoraNwodo/nocode-token-generator-dapp/issues)
+[![Forks](https://img.shields.io/github/forks/AdoraNwodo/nocode-token-generator-dapp.svg)](https://github.com/AdoraNwodo/nocode-token-generator-dapp/networks/members)
+[![Stars](https://img.shields.io/github/stars/AdoraNwodo/nocode-token-generator-dapp.svg)](https://github.com/AdoraNwodo/nocode-token-generator-dapp/stargazers)
+[![GitHub followers](https://img.shields.io/github/followers/AdoraNwodo.svg?style=social&label=Follow&maxAge=2592000)](https://github.com/AdoraNwodo?tab=followers)
+[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/AdoraNwodo/MedManager/)
+
 AutoToken is a DApp that allows people without technical skills to create their own tokens without needing to write code ✨ 🚀
 
 Try it out [here](https://autotokendapp.netlify.app/) 💕
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/07395ef9-a2c4-40c6-9743-a9c7957d15f2/deploy-status)](https://app.netlify.com/sites/autotokendapp/deploys)
-
 
 [![AutoToken](https://raw.githubusercontent.com/AdoraNwodo/nocode-token-generator-dapp/main/ui/home.png)](https://github.com/AdoraNwodo/nocode-token-generator-dapp)
 
