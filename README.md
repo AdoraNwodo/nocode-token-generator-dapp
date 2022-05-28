@@ -6,13 +6,9 @@ Try it out [here](https://autotokendapp.netlify.app/) 💕
 
 [![AutoToken](https://raw.githubusercontent.com/AdoraNwodo/nocode-token-generator-dapp/main/ui/home.png)](https://github.com/AdoraNwodo/nocode-token-generator-dapp)
 
-## Problem
-Accessibility and penetration of blockchain technology. There are users (e.g. content creators) that would like to create their tokens for utility but don't know how to.This means that if you are not a Web3 developer, creating your own token will be hard for you. 
+AutoToken is a no-code token generator that allows people from diverse backgrounds to create their tokens without needing to write any line of code. 
 
-## Solution
-AutoToken is a no-code token generator that allows people from diverse backgrounds  to create their tokens without needing to write any line of code. 
-
-AutoToken aims to offer its users the ability to create ERC-20, ERC-721  and ERC 1155 tokens. In order to do that, the user needs to connect. Today, many people have to write ethereum smart contracts to do that. their MetaMask wallet. Once connected, users will have access to all the features that exist on the dApp.
+AutoToken aims to offer its users the ability to create ERC-20, ERC-721 and ERC 1155 tokens. In order to do that, the user needs to connect. Today, many people have to write ethereum smart contracts to do that. their MetaMask wallet. Once connected, users will have access to all the features that exist on the dApp.
 
 With this solution, users will be able to specify the properties of the token they would like to create, deploy smart contracts that create virtual tokens without needing to write any line of code and see a list of all the tokens they have.
 
